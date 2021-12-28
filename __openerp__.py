@@ -6,7 +6,11 @@
     'sequence':1,
     'description':"Managing a school staffs",
     'images':[''],
-    'init_xml':['sequences/sequences.xml'],
+    'init_xml':['sequences/sequences.xml',
+        'security/scholar_security.xml',
+        'access/access_data.xml',
+        'security/ir.model.access.csv',
+        'data/email_template.xml'],
     'depends':['base','hr','mail', 'email_template'],
     'data':[
         'views/view_etablishement.xml',
@@ -28,11 +32,7 @@
         'views/view_holiday.xml',
         'views/view_room.xml',
         'views/view_complaints.xml',
-        'workflows/wkf_eleve.xml',
-        'access/access_data.xml',
-        'security/scholar_security.xml',
-        'security/ir.model.access.csv',
-        'data/email_template.xml'
+        'workflows/wkf_eleve.xml'
     ],
     'website':'https://ensah.trackiness.com',
     'update_xml':[],

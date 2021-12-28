@@ -90,7 +90,7 @@
                 </kanban>
             </field>
         </record>
-		<record model="ir.ui.view" id="scholar.eleve_tree">
+		<record model="ir.ui.view" id="scholar_eleve_tree">
 			<field name="name">scholar.eleve.tree</field>
 			<field name="model">scholar.eleve</field>
 			<field name="type">tree</field>
@@ -113,7 +113,7 @@
 				<search string="Search Student">
 					<filter string="Studying" icon="terp-accessories-archiver" domain="[('state','=','studying')]"/>
 					<filter string="Adjourned" icon="terp-accessories-archiver" domain="[('state','=','studying_adjourned')]"/>
-					<filter string="Excluded" icon="terp-accessories-archiver" domain="[('state','in',('graduated','pv_reunion_ouverture'))]"/>
+					<filter string="Excluded" icon="terp-accessories-archiver" domain="[('state','in',('graduated'))]"/>
 					<filter string="Graduated" icon="terp-accessories-archiver" domain="[('state','=','excluded')]"/>
 					<separator orientation="horizontal"/>
 					<group expand="0" string="Group By...">

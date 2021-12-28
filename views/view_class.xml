@@ -31,7 +31,7 @@
 				</form>
 			</field>
 		</record>
-		<record model="ir.ui.view" id="scholar.class_tree">
+		<record model="ir.ui.view" id="scholar_class_tree">
 			<field name="name">scholar.class.tree</field>
 			<field name="model">scholar.class</field>
 			<field name="type">tree</field>

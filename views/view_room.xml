@@ -25,7 +25,7 @@
 				</form>
 			</field>
 		</record>
-		<record model="ir.ui.view" id="scholar.room_tree">
+		<record model="ir.ui.view" id="scholar_room_tree">
 			<field name="name">scholar.room.tree</field>
 			<field name="model">scholar.room</field>
 			<field name="type">tree</field>

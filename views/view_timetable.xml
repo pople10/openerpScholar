@@ -30,7 +30,7 @@
 				</form>
 			</field>
 		</record>
-		<record model="ir.ui.view" id="scholar.timetable_tree">
+		<record model="ir.ui.view" id="scholar_timetable_tree">
 			<field name="name">scholar.timetable.tree</field>
 			<field name="model">scholar.timetable</field>
 			<field name="type">tree</field>
@@ -44,7 +44,7 @@
 				</tree>
 			</field>
 		</record>
-		<record id="scholar.timetable_calendar" model="ir.ui.view">
+		<record id="scholar_timetable_calendar" model="ir.ui.view">
 			<field name="name">scholar.timetable.calendar</field>
 			<field name="model">scholar.timetable</field>
 			<field name="arch" type="xml">

@@ -26,7 +26,7 @@
 				</form>
 			</field>
 		</record>
-		<record model="ir.ui.view" id="scholar.holiday_tree">
+		<record model="ir.ui.view" id="scholar_holiday_tree">
 			<field name="name">scholar.holiday.tree</field>
 			<field name="model">scholar.holiday</field>
 			<field name="type">tree</field>
@@ -39,7 +39,7 @@
 				</tree>
 			</field>
 		</record>
-		<record id="scholar.holiday_calendar" model="ir.ui.view">
+		<record id="scholar_holiday_calendar" model="ir.ui.view">
 			<field name="name">scholar.holiday.calendar</field>
 			<field name="model">scholar.holiday</field>
 			<field name="arch" type="xml">

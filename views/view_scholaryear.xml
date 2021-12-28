@@ -23,7 +23,7 @@
 				</form>
             </field>
         </record>
-        <record model="ir.ui.view" id="scholar.scholaryear_tree">
+        <record model="ir.ui.view" id="scholar_scholaryear_tree">
             <field name="name">scholar.scholaryear.tree</field>
             <field name="model">scholar.scholaryear</field>
             <field name="type">tree</field>
