@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_holiday_form_view" model="ir.ui.view">
+            <field name="name">scholar.holiday.form</field>
+            <field name="model">scholar.holiday</field>
+			<field name="arch" type="xml">
+				<form string="holiday" version="7.0">
+					<sheet>
+						<notebook>
+							<page string="Holidays Details">
+								<group>
+									<group>
+										<field name="from" on_change="onchange_dates(from,to)"/>
+										<field name="name"/>
+									</group>
+									<group>
+										<field name="to" on_change="onchange_dates(from,to)"/>
+										<field name="idScholarYear"/>
+									</group>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar.holiday_tree">
+			<field name="name">scholar.holiday.tree</field>
+			<field name="model">scholar.holiday</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Holidays list">
+                    <field name="from"/>
+                    <field name="to"/>
+                    <field name="name"/>
+                    <field name="idScholarYear"/>
+				</tree>
+			</field>
+		</record>
+		<record id="scholar.holiday_calendar" model="ir.ui.view">
+			<field name="name">scholar.holiday.calendar</field>
+			<field name="model">scholar.holiday</field>
+			<field name="arch" type="xml">
+				<calendar color="name" date_stop="to" date_start="from" string="holiday" mode="month">
+					<field name="name"/>
+				</calendar>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_holiday_seq">
+			<field name="name">Holidays</field>
+			<field name="res_model">scholar.holiday</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">calendar,tree</field>
+		</record>
+        <menuitem name="Management" id="mainManagement" parent="mainBar"/>
+        <menuitem name="Holidays" id="mainholiday" parent="mainManagement" action="action_holiday_seq"/>
+	</data>
+</openerp>

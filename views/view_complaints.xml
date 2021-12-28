@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_complaints_form_view" model="ir.ui.view">
+            <field name="name">scholar.complaints.form</field>
+            <field name="model">scholar.complaints</field>
+			<field name="arch" type="xml">
+				<form string="complaints" version="7.0">
+					<sheet>
+						<div class="oe_right oe_button_box" name="button_box">
+                            <button name="%(mail.action_email_compose_message_wizard)d" string="Send Email" class="ourBtn" type="action" />
+                        </div>
+						<notebook>
+							<page string="Complaints Details">
+								<div class="oe_title">
+									<label for="Idcomplaints" class="oe_edit_only"/>
+									<h3 class="idStyle">
+										<field name="Idcomplaints" readonly="1"/>
+									</h3>
+									<div class="clear"></div>
+								</div>
+								<group>
+									<field name="idProfessor"/>
+									<field name="idEleve"/>
+									<field name="subject"/>
+									<field name="body"/>
+                                </group>
+							</page>
+						</notebook>
+					</sheet>
+					<center><div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" />
+                    </div></center>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar.complaints_tree">
+			<field name="name">scholar.complaints.tree</field>
+			<field name="model">scholar.complaints</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="complaints list">
+					<field name="Idcomplaints" />
+                    <field name="idProfessor"/>
+                    <field name="idEleve"/>
+                    <field name="subject"/>
+                    <field name="body"/>
+				</tree>
+			</field>
+		</record>
+		
+<!--         <record id="scholar_complaints_search_view" model="ir.ui.view">
+            <field name="name">scholar.complaints.search</field>
+            <field name="model">scholar.complaints</field>
+            <field name="arch" type="xml">
+				<search string="Search complaints">
+                    <separator orientation="horizontal"/>
+					<group expand="0" string="Group By...">
+                        <filter string="Level" icon="terp-project" domain="[]" context="{'group_by':'idLevel'}"/>
+                        <filter string="Scholar Year" icon="terp-project" domain="[]" context="{'group_by':'idScholarYear'}"/>
+                    </group>
+				</search>
+			</field>
+		</record> -->
+		<record model="ir.actions.act_window" id="action_complaints_seq">
+			<field name="name">Complaintses</field>
+			<field name="res_model">scholar.complaints</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+        <menuitem name="Professors" id="mainProfessorsTab" parent="mainBar"/>
+        <menuitem name="Complaints" id="mainComplaints" parent="mainProfessorsTab" action="action_complaints_seq"/>
+	</data>
+</openerp>

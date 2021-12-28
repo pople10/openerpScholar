@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		 <menuitem id="mainBar" name="Scholar"/> 
+		 <record id="scholar_inscription_form_view" model="ir.ui.view">
+            <field name="name">scholar.inscription.form</field>
+            <field name="model">scholar.inscription</field>
+            <field name="arch" type="xml">
+                <form string="inscription" version="7.0">
+					<sheet>
+						<notebook >
+							<page string="Details Inscription">
+                                <div class="oe_title">
+                                    <label for="idInscription" class="oe_edit_only"/>
+                                    <h3 class="idStyle">
+                                        <field name="idInscription" readonly="1"/>
+                                    </h3>
+                                    <div class="clear"></div>
+                                </div>
+								<group>
+                                    <field name="idClass" on_change="onchange_data(idEleve,idClass)"/>
+                                    <field name="idEleve" on_change="onchange_data(idEleve,idClass)"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="scholar.inscription_tree">
+            <field name="name">scholar.inscription.tree</field>
+            <field name="model">scholar.inscription</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Infos Inscription">
+                    <field name="idInscription"/>
+                    <field name="idClass"/>
+                    <field name="idEleve"/>
+                    <field name="created_at"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_inscription_seq">
+            <field name="name">Inscriptions</field>
+            <field name="res_model">scholar.inscription</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="scholar_inscription_search_view" model="ir.ui.view">
+            <field name="name">scholar.inscription.search</field>
+            <field name="model">scholar.inscription</field>
+            <field name="arch" type="xml">
+				<search string="Search inscription">
+				</search>
+			</field>
+		</record>
+       <menuitem name="Management" id="mainManagement" parent="mainBar"/>
+       <menuitem name="Inscription" id="mainInscription" parent="mainManagement" action="action_inscription_seq"/>
+    </data>
+</openerp>

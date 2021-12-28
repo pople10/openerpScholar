@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_exam_form_view" model="ir.ui.view">
+            <field name="name">scholar.exam.form</field>
+            <field name="model">scholar.exam</field>
+			<field name="arch" type="xml">
+				<form string="Exam" version="7.0">
+					<sheet>
+						<notebook>
+							<page string="Exam Details">
+								<div class="oe_title">
+									<label for="idExam" class="oe_edit_only"/>
+									<h3 class="idStyle">
+										<field name="idExam" readonly="1"/>
+									</h3>
+									<div class="clear"></div>
+								</div>
+								<group>
+									<group>
+										<field name="name"/>
+										<field name="idModule"/>
+										<field name="from"  on_change="onchange_dates(from,to)"/>
+									</group>
+									<group>
+										<field name="maxMark" class="w100"/>
+										<field name="idRoom"/>
+										<field name="to"  on_change="onchange_dates(from,to)"/>
+									</group>
+								</group>
+								<group>
+									<field name="exam_result_ids"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar.exam_tree">
+			<field name="name">scholar.exam.tree</field>
+			<field name="model">scholar.exam</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Exam list">
+                    <field name="idExam" />
+                    <field name="name"/>
+                    <field name="idModule"/>
+                    <field name="maxMark"/>
+                    <field name="exam_result_ids"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_exam_seq">
+			<field name="name">Exams</field>
+			<field name="res_model">scholar.exam</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+				  Click to create an exam. 
+				</p><p>
+				  An exam is relative to a module.
+				</p>
+			  </field>
+		</record>
+		<record id="scholar_exam_search_view" model="ir.ui.view">
+            <field name="name">scholar.exam.search</field>
+            <field name="model">scholar.exam</field>
+            <field name="arch" type="xml">
+				<search string="Search exam">
+				</search>
+			</field>
+		</record>
+        <menuitem name="Professors" id="mainProfessorsTab" parent="mainBar"/>
+        <menuitem name="Exam" id="mainExam" parent="mainProfessorsTab" action="action_exam_seq"/>
+	</data>
+</openerp>

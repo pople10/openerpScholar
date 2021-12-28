@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		 <menuitem id="mainBar" name="Scholar"/> 
+		 <record id="scholar_parent_form_view" model="ir.ui.view">
+            <field name="name">scholar.parent.form</field>
+            <field name="model">scholar.parent</field>
+            <field name="arch" type="xml">
+                <form string="Parent" version="7.0">
+					<sheet>
+                        <field name="photo" widget='image' class="oe_left oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="firstname" class="oe_edit_only"/>
+                            <h1>
+                                <field name="firstname"/>
+                            </h1>
+                            <label for="lastname" class="oe_edit_only"/>
+                            <h1>
+                                <field name="lastname"/>
+                            </h1>
+                        </div>
+                        <div class="oe_right oe_button_box" name="button_box">
+                            
+                        </div>
+                        <notebook>
+                            <page string="Details">
+                                <group>
+                                    <group string="">
+                                        <field name="email" widget="email" on_change="onchange_email(email)"/>
+                                        <field name="dateofbirth" on_change="onchange_dob(dateofbirth)"/>
+                                        <field name="cityofbirth"/>
+                                    </group>
+                                    <group string="">
+                                        <field name="gender"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Additional Details">
+                                <group>
+                                    <field name="address"/>
+                                    <field name="job"/>
+                                    <field name="phone" on_change="onchange_phone(phone)"/>
+                                </group>
+                            </page>
+                            <page string="Children">
+                                <group>
+                                    <group string="">
+                                        <field name="eleve_ids"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+				</form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="scholar_parent_kanban_view_scholars">
+            <field name="name">Parents</field>
+            <field name="model">scholar.parent</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_scholar_vignette">
+                                <div class="oe_scholar_image">
+                                    <a type="open"><img t-att-src="kanban_image('scholar.parent', 'image_medium', record.id.value)" class="oe_scholar_picture oe_kanban_image_inherit"/></a>
+                                </div>
+                                <div class="oe_scholar_details">
+                                    <h4>
+                                        <a type="open"><field name="firstname"/> <field name="lastname"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>Date of birth: <field name="dateofbirth"/></li>
+                                        <li>Gender: <field name="gender"/></li>
+                                        <li>Tel: <field name="phone"/></li>
+                                        <li><field name="email"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_parent_seq">
+            <field name="name">Parents</field>
+            <field name="res_model">scholar.parent</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,form</field>
+        </record>
+        <record id="scholar_parent_search_view" model="ir.ui.view">
+            <field name="name">scholar.parent.search</field>
+            <field name="model">scholar.parent</field>
+            <field name="arch" type="xml">
+				<search string="Search parent">
+					<group expand="0" string="Group By...">
+                        <filter string="Parent Gender" icon="terp-project" domain="[]" context="{'group_by':'gender'}"/>
+                        <filter string="City of birth" icon="terp-project" domain="[]" context="{'group_by':'cityofbirth'}"/>
+                        <filter string="Job" icon="terp-project" domain="[]" context="{'group_by':'job'}"/>
+                    </group>
+				</search>
+			</field>
+		</record>
+       <menuitem name="Persons" id="mainPersons" parent="mainBar"/>
+       <menuitem name="Parent" id="mainParent" parent="mainPersons" action="action_parent_seq"/>
+    </data>
+</openerp>

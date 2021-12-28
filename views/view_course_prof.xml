@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_course_form_view" model="ir.ui.view">
+            <field name="name">scholar.course.form</field>
+            <field name="model">scholar.course</field>
+			<field name="arch" type="xml">
+				<form string="course" version="7.0">
+					<sheet>
+						<notebook>
+							<page string="Course Details">
+								<group>
+									<field name="idModule"/>
+                                    <field name="name"/>
+									<field name="videoLink" on_change="onchange_url(videoLink)"/>
+									<field name="content"/>
+                                    <field name="attachement"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar_course_tree">
+			<field name="name">scholar.course.tree</field>
+			<field name="model">scholar.course</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="course list">
+                    <field name="idModule"/>
+                    <field name="name"/>
+					<field name="videoLink"/>
+					<field name="content"/>
+                    <field name="attachement"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_course_seq">
+			<field name="name">Courses Management</field>
+			<field name="res_model">scholar.course</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+            <field name="view_id" ref="scholar_course_form_view"/>
+		</record>
+		<record id="scholar_course_search_view" model="ir.ui.view">
+            <field name="name">scholar.course.search</field>
+            <field name="model">scholar.course</field>
+            <field name="arch" type="xml">
+				<search string="Search course">
+				</search>
+			</field>
+		</record>
+        <menuitem name="Professors" id="mainProfessorsTab" parent="mainBar"/>
+        <menuitem name="Course Professor" id="mainCourseProf" parent="mainProfessorsTab" action="action_course_seq"/>
+	</data>
+</openerp>

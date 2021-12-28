@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_timetable_form_view" model="ir.ui.view">
+            <field name="name">scholar.timetable.form</field>
+            <field name="model">scholar.timetable</field>
+			<field name="arch" type="xml">
+				<form string="timetable" version="7.0">
+					<sheet>
+						<notebook>
+							<page string="Time table Details">
+								<group>
+									<group>
+										<field name="from" on_change="onchange_dates(from,to)"/>
+										<field name="idModule"/>
+										<field name="exceptional"/>
+									</group>
+									<group>
+										<field name="to" on_change="onchange_dates(from,to)"/>
+										<field name="idProfessor" on_change="onchange_prof(idProfessor)"/>
+									</group>
+									<group>
+										<field name="idRoom"/>
+									</group>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar.timetable_tree">
+			<field name="name">scholar.timetable.tree</field>
+			<field name="model">scholar.timetable</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Time table list">
+                    <field name="idTimetable"/>
+                    <field name="from"/>
+                    <field name="to"/>
+                    <field name="idModule"/>
+                    <field name="idProfessor"/>
+				</tree>
+			</field>
+		</record>
+		<record id="scholar.timetable_calendar" model="ir.ui.view">
+			<field name="name">scholar.timetable.calendar</field>
+			<field name="model">scholar.timetable</field>
+			<field name="arch" type="xml">
+				<calendar color="name" date_stop="to" date_start="from" string="Timetable" mode="week">
+					<field name="name"/>
+				</calendar>
+			</field>
+		</record>
+		<record id="scholar_timetable_search_view" model="ir.ui.view">
+            <field name="name">scholar.timetable.search</field>
+            <field name="model">scholar.timetable</field>
+            <field name="arch" type="xml">
+				<search string="Search Student">
+					<filter string="unavailable date" icon="terp-accessories-archiver" domain="[('exceptional','=',True)]"/>
+					<filter string="available date" icon="terp-accessories-archiver" domain="[('exceptional','=',False)]"/>
+				</search>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_timetable_seq">
+			<field name="name">Timetable</field>
+			<field name="res_model">scholar.timetable</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">calendar,tree</field>
+		</record>
+        <menuitem name="Management" id="mainManagement" parent="mainBar"/>
+        <menuitem name="Timetable" id="mainTimeTable" parent="mainManagement" action="action_timetable_seq"/>
+	</data>
+</openerp>

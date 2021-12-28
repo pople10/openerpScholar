@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_course_edu_form_view" model="ir.ui.view">
+            <field name="name">scholar.course.form.edu</field>
+            <field name="model">scholar.course</field>
+			<field name="arch" type="xml">
+				<form string="course" version="7.0" create="false" edit="false">
+					<sheet>
+						<notebook>
+                            <center><iframe width="560" height="315" 
+                                id="videoLink"
+                                src=""
+                                title="Course" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen="true">
+                            </iframe></center>
+							<page string="">
+								<group>
+                                    <field name="name"/>
+									<field name="content"/>
+                                    <field name="videoLink" invisible="1"/>
+                                    <field name="attachement"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar_course_edu_tree">
+			<field name="name">scholar.course.tree.edu</field>
+			<field name="model">scholar.course</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="course list">
+                    <field name="idModule"/>
+					<field name="name"/>
+                    <button type="object" name="get_formview_action" string="Open" icon="gtk-open"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_course_educ_seq">
+			<field name="name">Courses</field>
+			<field name="res_model">scholar.course</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree</field>
+            <field name="view_id" ref="scholar_course_edu_tree"/>
+		</record>
+        <menuitem name="Students" id="mainStudent" parent="mainBar"/>
+        <menuitem name="Courses" id="mainCourseEdu" parent="mainStudent" action="action_course_educ_seq"/>
+	</data>
+</openerp>

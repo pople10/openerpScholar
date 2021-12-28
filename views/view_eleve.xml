@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_eleve_form_view" model="ir.ui.view">
+            <field name="name">scholar.eleve.form</field>
+            <field name="model">scholar.eleve</field>
+			<field name="arch" type="xml">
+				<form string="Student" version="7.0">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible=""></field>
+                        <button name="studying_adjourned" string="Adjourned" states="studying" type="workflow" class="oe_highlight" />
+                        <button name="excluded" string="Excluded" states="studying" type="workflow" class="oe_highlight" />
+                        <button name="graduated" string="Graduated" states="studying" type="workflow" class="oe_highlight" />
+                        <button name="studying" string="Return to Study" states="studying_adjourned" type="workflow" class="oe_highlight" />
+                        <button name="Execlude_Adjourn" string="Excluded" states="studying_adjourned" type="workflow" class="oe_highlight" />
+                        
+                    </header>                    
+					<sheet>
+                        <field name="photo" widget='image' class="oe_left oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="firstname" class="oe_edit_only"/>
+                            <h1>
+                                <field name="firstname"/>
+                            </h1>
+                            <label for="lastname" class="oe_edit_only"/>
+                            <h1>
+                                <field name="lastname"/>
+                            </h1>
+                        </div>
+                        <div class="oe_right oe_button_box" name="button_box">
+                            
+                        </div>
+                        <notebook>
+                            <page string="Details">
+                                <group>
+                                    <group string="">
+                                        <field name="email" invisible="1" widget="email" on_change="onchange_email(email)"/>
+                                        <field name="dateofbirth" on_change="onchange_dob(dateofbirth)"/>
+                                        <field name="cityofbirth"/>
+                                    </group>
+                                    <group string="">
+                                        <field name="gender"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Additional Details">
+                                <group>
+                                    <field name="cne" on_change="onchange_cne(cne)"/>
+									<field name="idParent"/>
+                                </group>
+                            </page>
+                            <page string="Inscriptions">
+                                <group>
+                                    <group string="">
+                                        <field name="inscription_ids"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+				</form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="scholar_eleve_kanban_view_scholars">
+            <field name="name">students</field>
+            <field name="model">scholar.eleve</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box" class="ss">
+                            <div class="oe_scholar_vignette">
+                                <div class="oe_scholar_image">
+                                    <a type="open"><img t-att-src="kanban_image('scholar.eleve', 'image_medium', record.id.value)" class="oe_scholar_picture"/></a>
+                                </div>
+                                <div class="oe_scholar_details">
+                                    <h4>
+                                        <a type="open"><field name="firstname"/> <field name="lastname"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>Date of birth: <field name="dateofbirth"/></li>
+                                        <li>Gender: <field name="gender"/></li>
+                                        <li><field name="email"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+		<record model="ir.ui.view" id="scholar.eleve_tree">
+			<field name="name">scholar.eleve.tree</field>
+			<field name="model">scholar.eleve</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Student list">
+					<field name="firstname" />
+					<field name="lastname" />
+					<field name="dateofbirth" />
+                    <field name="cne"/>
+                    <field name="state"/>
+                    <field name="idParent"/>
+                    <field name="inscription_ids"/>
+				</tree>
+			</field>
+		</record>
+        <record id="scholar_eleve_search_view" model="ir.ui.view">
+            <field name="name">scholar.eleve.search</field>
+            <field name="model">scholar.eleve</field>
+            <field name="arch" type="xml">
+				<search string="Search Student">
+					<filter string="Studying" icon="terp-accessories-archiver" domain="[('state','=','studying')]"/>
+					<filter string="Adjourned" icon="terp-accessories-archiver" domain="[('state','=','studying_adjourned')]"/>
+					<filter string="Excluded" icon="terp-accessories-archiver" domain="[('state','in',('graduated','pv_reunion_ouverture'))]"/>
+					<filter string="Graduated" icon="terp-accessories-archiver" domain="[('state','=','excluded')]"/>
+					<separator orientation="horizontal"/>
+					<group expand="0" string="Group By...">
+                        <filter string="Student Gender" icon="terp-project" domain="[]" context="{'group_by':'gender'}"/>
+                        <filter string="City of birth" icon="terp-project" domain="[]" context="{'group_by':'cityofbirth'}"/>
+                    </group>
+				</search>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_eleve_seq">
+			<field name="name">Students</field>
+			<field name="res_model">scholar.eleve</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">kanban,tree,form</field>
+		</record>
+        <menuitem name="Persons" id="mainPersons" parent="mainBar"/>
+        <menuitem name="Student" id="mainEleve" parent="mainPersons" action="action_eleve_seq"/>
+	</data>
+</openerp>

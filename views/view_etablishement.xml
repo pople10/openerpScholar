@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		 <menuitem id="mainBar" name="Scholar"/> 
+		 <record id="scholar_etablishement_form_view" model="ir.ui.view">
+            <field name="name">scholar.etablishement.form</field>
+            <field name="model">scholar.etablishement</field>
+            <field name="arch" type="xml">
+                <form string="etablishement" version="7.0">
+					<sheet>
+                        <div class="oe_right oe_button_box" name="button_box">
+                            <button id="create" type="object" string="Create Scholar Year" name= "create_scholar_year" class="ourBtn"/>
+                        </div>
+						<notebook >
+							<page string="Details Etablishement">
+								<group>
+                                    <field name="idEtablishement" readonly="1"/>
+                                    <field name="name"/>
+                                    <field name="maxStudentTotal" on_change="onchange_places(maxStudentTotal,maxStudentPerClass)"/>
+                                    <field name="maxStudentPerClass" on_change="onchange_places(maxStudentTotal,maxStudentPerClass)"/>
+                                    <field name="scholaryear_ids" readonly="1"/>
+                                    <field name="room_ids" readonly="1"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="scholar.etablishement_tree">
+            <field name="name">scholar.etablishement.tree</field>
+            <field name="model">scholar.etablishement</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Infos Etablishement">
+                    <field name="idEtablishement"/>
+                    <field name="name"/>
+                    <field name="maxStudentTotal"/>
+					<field name="maxStudentPerClass"/>
+                    <field name="scholaryear_ids"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_etablishement_seq">
+            <field name="name">Etablishements</field>
+            <field name="res_model">scholar.etablishement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+				  Click to create an establishement. 
+				</p><p>
+				  It is necessary to have one.
+				</p>
+			</field>
+        </record>
+        <record id="scholar_etablishement_search_view" model="ir.ui.view">
+            <field name="name">scholar.etablishement.search</field>
+            <field name="model">scholar.etablishement</field>
+            <field name="arch" type="xml">
+				<search string="Search establishment">
+                    <filter string="with number of students less than 20" icon="terp-accessories-archiver" domain="[('maxStudentTotal','&lt;',20)]"/>
+                    <filter string="with number of students greater than 20" icon="terp-accessories-archiver" domain="[('maxStudentTotal','>',20)]"/>
+				</search>
+			</field>
+		</record>
+
+       <menuitem name="Management" id="mainManagement" parent="mainBar"/>
+       <menuitem name="Etablishement" id="mainEtablishement" parent="mainManagement" action="action_etablishement_seq"/>
+    </data>
+</openerp>

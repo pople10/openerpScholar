@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		 <menuitem id="mainBar" name="Scholar"/> 
+		 <record id="scholar_person_form_view" model="ir.ui.view">
+            <field name="name">scholar.person.form</field>
+            <field name="model">scholar.person</field>
+            <field name="arch" type="xml">
+                <form string="person" version="7.0">
+					<sheet>
+                        <field name="photo" widget='image' class="oe_left oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="firstname" class="oe_edit_only"/>
+                            <h1>
+                                <field name="firstname"/>
+                            </h1>
+                            <label for="lastname" class="oe_edit_only"/>
+                            <h1>
+                                <field name="lastname"/>
+                            </h1>
+                        </div>
+                        <div class="oe_right oe_button_box w300px" name="button_box">
+                            <button name="create_professor" string="Make them professor" type="object" class="oe_highlight"/>
+                            <button name="create_parent" string="Make them parent" type="object" class="oe_highlight"/>
+                        </div>
+                        <notebook>
+                            <page string="Details">
+                                <group>
+                                    <group string="">
+                                        <field name="email" widget="email" on_change="onchange_email(email)"/>
+                                        <field name="dateofbirth" class="w100" on_change="onchange_dob(dateofbirth)"/>
+                                        <field name="cityofbirth"/>
+                                    </group>
+                                    <group string="">
+                                        <field name="gender"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+				</form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="scholar_person_kanban_view_scholars">
+            <field name="name">Persons</field>
+            <field name="model">scholar.person</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_scholar_vignette">
+                                <div class="oe_scholar_image">
+                                    <a type="open"><img t-att-src="kanban_image('scholar.person', 'image_medium', record.id.value)" class="oe_scholar_picture oe_kanban_image_inherit"/></a>
+                                </div>
+                                <div class="oe_scholar_details">
+                                    <h4>
+                                        <a type="open"><field name="firstname"/> <field name="lastname"/></a>
+                                    </h4>
+                                    <ul>
+                                        <li>Date of birth: <field name="dateofbirth"/></li>
+                                        <li>Gender: <field name="gender"/></li>
+                                        <li><field name="email"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_person_seq">
+            <field name="name">Persons</field>
+            <field name="res_model">scholar.person</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,form</field>
+        </record>
+        <menuitem name="Persons" id="mainPersons" parent="mainBar"/>
+       <menuitem sequence="1" name="Person" id="mainPerson" parent="mainPersons" action="action_person_seq"/>
+    </data>
+</openerp>

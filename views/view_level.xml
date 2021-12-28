@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_level_form_view" model="ir.ui.view">
+            <field name="name">scholar.level.form</field>
+            <field name="model">scholar.level</field>
+			<field name="arch" type="xml">
+				<form string="level" version="7.0">
+					<sheet>
+						<notebook>
+							<page string="Level Details">
+								<group>
+									<field name="idLevel"/>
+									<field name="name"/>
+									<field name="class_ids"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar.level_tree">
+			<field name="name">scholar.level.tree</field>
+			<field name="model">scholar.level</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Level list">
+                    <field name="idLevel"/>
+                    <field name="name"/>
+                    <field name="class_ids"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_level_seq">
+			<field name="name">Level management</field>
+			<field name="res_model">scholar.level</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+        <menuitem name="Management" id="mainManagement" parent="mainBar"/>
+        <menuitem name="Level" id="mainlevel" parent="mainManagement" action="action_level_seq"/>
+	</data>
+</openerp>

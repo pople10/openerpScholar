@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_module_form_view" model="ir.ui.view">
+            <field name="name">scholar.module.form</field>
+            <field name="model">scholar.module</field>
+			<field name="arch" type="xml">
+				<form string="module" version="7.0">
+					<sheet>
+						<notebook>
+							<page string="module Details">
+                                <div class="oe_title">
+									<label for="idModule" class="oe_edit_only"/>
+									<h3 class="idStyle">
+										<field name="idModule"  on_change="onchange_data(idModule,idClass)"/>
+									</h3>
+									<div class="clear"></div>
+								</div>
+								<group>
+									<field name="name"/>
+									<field name="idClass" on_change="onchange_data(idModule,idClass)"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar.module_tree">
+			<field name="name">scholar.module.tree</field>
+			<field name="model">scholar.module</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Modules list">
+                    <field name="idModule"/>
+                    <field name="name"/>
+					<field name="idClass"/>
+				</tree>
+			</field>
+		</record>
+        <record id="scholar_module_search_view" model="ir.ui.view">
+            <field name="name">scholar.module.search</field>
+            <field name="model">scholar.module</field>
+            <field name="arch" type="xml">
+				<search string="Search module">
+				</search>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_module_seq">
+			<field name="name">Modules</field>
+			<field name="res_model">scholar.module</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+        
+        <menuitem name="Management" id="mainManagement" parent="mainBar"/>
+        <menuitem name="Module" id="mainModule" parent="mainManagement" action="action_module_seq"/>
+	</data>
+</openerp>

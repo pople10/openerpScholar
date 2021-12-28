@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		 <menuitem id="mainBar" name="Scholar"/> 
+		 <record id="scholar_scholaryear_form_view" model="ir.ui.view">
+            <field name="name">scholar.scholaryear.form</field>
+            <field name="model">scholar.scholaryear</field>
+            <field name="arch" type="xml">
+                <form string="scholaryear" version="7.0">
+					<sheet>
+						<notebook >
+							<page string="Details Scholar Years">
+								<group>
+                                    <field name="idScholarYear" readonly="1"/>
+                                    <field name="name" readonly="1"/>
+                                    <field name="startDate"/>
+                                    <field name="endDate"/>
+                                    <field name="idEtablishement" on_change="onchange_idEtablishement(idEtablishement)"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="scholar.scholaryear_tree">
+            <field name="name">scholar.scholaryear.tree</field>
+            <field name="model">scholar.scholaryear</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Infos scholaryear">
+                    <field name="idScholarYear"/>
+                    <field name="name"/>
+                    <field name="startDate"/>
+					<field name="endDate"/>
+                    <field name="idEtablishement"/>
+                    <field name="class_ids"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_scholaryear_seq">
+            <field name="name">Scholar Years</field>
+            <field name="res_model">scholar.scholaryear</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+       <menuitem name="Management" id="mainManagement" parent="mainBar"/>
+       <menuitem name="Scholar Year" id="mainScholaryear" parent="mainManagement" action="action_scholaryear_seq"/>
+    </data>
+</openerp>

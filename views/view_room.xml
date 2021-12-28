@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_room_form_view" model="ir.ui.view">
+            <field name="name">scholar.room.form</field>
+            <field name="model">scholar.room</field>
+			<field name="arch" type="xml">
+				<form string="room" version="7.0">
+					<sheet>
+						<notebook>
+							<page string="Room Details">
+								<group>
+                                    <group>
+                                        <field name="idEtablishement" on_change="onchange_data(room,idEtablishement)"/>
+									    <field name="name" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="room" on_change="onchange_data(room,idEtablishement)" class="w100"/>
+                                    </group>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar.room_tree">
+			<field name="name">scholar.room.tree</field>
+			<field name="model">scholar.room</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="rooms list">
+                    <field name="room"/>
+                    <field name="name"/>
+					<field name="idEtablishement"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_room_seq">
+			<field name="name">Rooms</field>
+			<field name="res_model">scholar.room</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+        
+        <menuitem name="Management" id="mainManagement" parent="mainBar"/>
+        <menuitem name="Room" id="mainRoom" parent="mainManagement" action="action_room_seq"/>
+	</data>
+</openerp>

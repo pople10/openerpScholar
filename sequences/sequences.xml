@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="inscription_sequence_type_id" model="ir.sequence.type">
+            <field name="name">Sequence Inscription</field>
+            <field name="code">sequence.inscription</field>
+        </record>
+        <record id="inscription_sequence_id" model="ir.sequence">
+            <field name="name">Sequence Inscription</field>
+            <field name="code">sequence.inscription</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">INS-%(year)s-</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+    <data>
+        <record id="idClass_sequence_type_id" model="ir.sequence.type">
+           <field name="name">Sequence idclass</field>
+           <field name="code">idClass</field>
+        </record>
+        <record id="idClass_sequence_id" model="ir.sequence">
+           <field name="name">Sequence idclass</field>
+           <field name="code">idClass</field>
+           <field name="active">TRUE</field>
+           <field name="prefix"></field>
+           <field name="padding">5</field>
+           <field name="number_next">1</field>
+           <field name="number_increment">1</field>
+        </record>
+     </data>
+     <data>
+        <record id="idModule_sequence_type_id" model="ir.sequence.type">
+           <field name="name">Sequence idmodule</field>
+           <field name="code">idModule</field>
+        </record>
+        <record id="idModule_sequence_id" model="ir.sequence">
+           <field name="name">Sequence idmodule</field>
+           <field name="code">idModule</field>
+           <field name="active">TRUE</field>
+           <field name="prefix">MODULE-</field>
+           <field name="padding">5</field>
+           <field name="number_next">1</field>
+           <field name="number_increment">1</field>
+        </record>
+     </data>
+     <data>
+        <record id="idEleve_sequence_type_id" model="ir.sequence.type">
+           <field name="name">Sequence ideleve</field>
+           <field name="code">idEleve</field>
+        </record>
+        <record id="idEleve_sequence_id" model="ir.sequence">
+           <field name="name">Sequence ideleve</field>
+           <field name="code">idEleve</field>
+           <field name="active">TRUE</field>
+           <field name="prefix">STD-</field>
+           <field name="padding">5</field>
+           <field name="number_next">1</field>
+           <field name="number_increment">1</field>
+        </record>
+     </data>
+     <data>
+        <record id="idEtablishement_sequence_type_id" model="ir.sequence.type">
+           <field name="name">Sequence idetablishement</field>
+           <field name="code">idEtablishement</field>
+        </record>
+        <record id="idEtablishement_sequence_id" model="ir.sequence">
+           <field name="name">Sequence idetablishement</field>
+           <field name="code">idEtablishement</field>
+           <field name="active">TRUE</field>
+           <field name="prefix"></field>
+           <field name="padding">5</field>
+           <field name="number_next">1</field>
+           <field name="number_increment">1</field>
+        </record>
+     </data>
+     <data>
+        <record id="idExam_sequence_type_id" model="ir.sequence.type">
+           <field name="name">Sequence idexam</field>
+           <field name="code">idExam</field>
+        </record>
+        <record id="idExam_sequence_id" model="ir.sequence">
+           <field name="name">Sequence idexam</field>
+           <field name="code">idExam</field>
+           <field name="active">TRUE</field>
+           <field name="prefix"></field>
+           <field name="padding">5</field>
+           <field name="number_next">1</field>
+           <field name="number_increment">1</field>
+        </record>
+     </data>
+     <data>
+        <record id="idParent_sequence_type_id" model="ir.sequence.type">
+           <field name="name">Sequence idparent</field>
+           <field name="code">idParent</field>
+        </record>
+        <record id="idParent_sequence_id" model="ir.sequence">
+           <field name="name">Sequence idparent</field>
+           <field name="code">idParent</field>
+           <field name="active">TRUE</field>
+           <field name="prefix">PAR-</field>
+           <field name="padding">5</field>
+           <field name="number_next">1</field>
+           <field name="number_increment">1</field>
+        </record>
+     </data>
+     <data>
+        <record id="idProfessor_sequence_type_id" model="ir.sequence.type">
+           <field name="name">Sequence idprofessor</field>
+           <field name="code">idProfessor</field>
+        </record>
+        <record id="idProfessor_sequence_id" model="ir.sequence">
+           <field name="name">Sequence idprofessor</field>
+           <field name="code">idProfessor</field>
+           <field name="active">TRUE</field>
+           <field name="prefix">PROF-</field>
+           <field name="padding">5</field>
+           <field name="number_next">1</field>
+           <field name="number_increment">1</field>
+        </record>
+     </data>
+     <data>
+        <record id="idTimetable_sequence_type_id" model="ir.sequence.type">
+           <field name="name">Sequence idtimetable</field>
+           <field name="code">idTimetable</field>
+        </record>
+        <record id="idTimetable_sequence_id" model="ir.sequence">
+           <field name="name">Sequence idtimetable</field>
+           <field name="code">idTimetable</field>
+           <field name="active">TRUE</field>
+           <field name="prefix">TT-</field>
+           <field name="padding">5</field>
+           <field name="number_next">1</field>
+           <field name="number_increment">1</field>
+        </record>
+     </data>
+     <data>
+      <record id="idRoom_sequence_type_id" model="ir.sequence.type">
+         <field name="name">Sequence idRoom</field>
+         <field name="code">idRoom</field>
+      </record>
+      <record id="idRoom_sequence_id" model="ir.sequence">
+         <field name="name">Sequence idRoom</field>
+         <field name="code">idRoom</field>
+         <field name="active">TRUE</field>
+         <field name="prefix">ROOM-</field>
+         <field name="padding">1</field>
+         <field name="number_next">1</field>
+         <field name="number_increment">1</field>
+      </record>
+   </data>
+   <data>
+      <record id="Idcomplaints_sequence_type_id" model="ir.sequence.type">
+         <field name="name">Sequence Idcomplaints</field>
+         <field name="code">Idcomplaints</field>
+      </record>
+      <record id="Idcomplaints_sequence_id" model="ir.sequence">
+         <field name="name">Sequence Idcomplaints</field>
+         <field name="code">Idcomplaints</field>
+         <field name="active">TRUE</field>
+         <field name="prefix"></field>
+         <field name="padding">1</field>
+         <field name="number_next">1</field>
+         <field name="number_increment">1</field>
+      </record>
+   </data>
+</openerp>

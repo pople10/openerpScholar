@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_class_form_view" model="ir.ui.view">
+            <field name="name">scholar.class.form</field>
+            <field name="model">scholar.class</field>
+			<field name="arch" type="xml">
+				<form string="Class" version="7.0">
+					<sheet>
+						<notebook>
+							<page string="Class Details">
+								<div class="oe_title">
+									<label for="idClass" class="oe_edit_only"/>
+									<h3 class="idStyle">
+										<field name="idClass" readonly="1"/>
+									</h3>
+									<div class="clear"></div>
+								</div>
+								<group>
+									<field name="name"/>
+									<field name="idLevel"/>
+									<field name="idScholarYear"/>
+									<field name="mainProfessor" on_change="onchange_prof(mainProfessor)"/>
+									<field name="inscription_ids" readonly="1"/>
+                                    <field name="module_ids"  readonly="1"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar.class_tree">
+			<field name="name">scholar.class.tree</field>
+			<field name="model">scholar.class</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Class list">
+					<field name="idClass" />
+                    <field name="name"/>
+                    <field name="idLevel"/>
+                    <field name="idScholarYear"/>
+                    <field name="mainProfessor"/>
+                    <field name="inscription_ids"/>
+                    <field name="module_ids"/>
+				</tree>
+			</field>
+		</record>
+		
+        <record id="scholar_class_search_view" model="ir.ui.view">
+            <field name="name">scholar.class.search</field>
+            <field name="model">scholar.class</field>
+            <field name="arch" type="xml">
+				<search string="Search class">
+                    <separator orientation="horizontal"/>
+					<group expand="0" string="Group By...">
+                        <filter string="Level" icon="terp-project" domain="[]" context="{'group_by':'idLevel'}"/>
+                        <filter string="Scholar Year" icon="terp-project" domain="[]" context="{'group_by':'idScholarYear'}"/>
+                    </group>
+				</search>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_class_seq">
+			<field name="name">Classes</field>
+			<field name="res_model">scholar.class</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+        <menuitem name="Management" id="mainManagement" parent="mainBar"/>
+        <menuitem name="Class" id="mainClass" parent="mainManagement" action="action_class_seq"/>
+	</data>
+</openerp>

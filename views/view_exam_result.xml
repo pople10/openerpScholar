@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="mainBar" name="Scholar"/> 
+		<record id="scholar_exam_result_form_view" model="ir.ui.view">
+            <field name="name">scholar.exam_result.form</field>
+            <field name="model">scholar.exam.result</field>
+			<field name="arch" type="xml">
+				<form string="Exam Results" version="7.0">
+					<sheet>
+						<notebook>
+							<page string="Exam Results Details">
+								<group>
+									<group>
+										<field name="idExam" on_change="onchange_student(idExam, originalMark)"/>
+										<field name="idInscription" on_change="onchange_student(idExam, originalMark)"/>
+										<field name="note" invisible="1"/>
+									</group>
+									<group>
+										<field class="markValidation" name="mark" readonly="1"/>
+										<field name="originalMark" on_change="onchange_mark(idExam, originalMark)"/>
+									</group>
+								</group>
+								<group>
+									<field name="report"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="scholar.exam_result_tree">
+			<field name="name">scholar.exam_result.tree</field>
+			<field name="model">scholar.exam.result</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Exam Results list">
+                    <field name="idExam" />
+                    <field name="idInscription"/>
+                    <field name="originalMark"/>
+					<field name="mark"/>
+                    <field name="note"/>
+                    <field name="report"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_exam_result_seq">
+			<field name="name">Exams' Result</field>
+			<field name="res_model">scholar.exam.result</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+				  Click to create a result. 
+				</p>
+			</field>
+		</record>
+		<record id="scholar_exam_result_search_view" model="ir.ui.view">
+            <field name="name">scholar.exam.result.search</field>
+            <field name="model">scholar.exam.result</field>
+            <field name="arch" type="xml">
+				<search string="Search exam results">
+                    <filter string="Excellent" icon="terp-accessories-archiver" domain="[('note','=','Excellent')]"/>
+                    <filter string="Outstanding" icon="terp-accessories-archiver" domain="[('note','=','Outstanding')]"/>
+                    <filter string="Very good" icon="terp-accessories-archiver" domain="[('note','=','Very good')]"/>
+                    <filter string="Good" icon="terp-accessories-archiver" domain="[('note','=','Good')]"/>
+                    <filter string="Failed" icon="terp-accessories-archiver" domain="[('note','=','Passed')]"/>
+                    <filter string="Catastrophic" icon="terp-accessories-archiver" domain="[('note','=','Failed')]"/>
+                    <filter string="Einstein" icon="terp-accessories-archiver" domain="[('note','=','Einstein')]"/>
+				</search>
+			</field>
+		</record>
+        <menuitem name="Professors" id="mainProfessorsTab" parent="mainBar"/>
+        <menuitem name="Exam Result" id="mainExamResult" parent="mainProfessorsTab" action="action_exam_result_seq"/>
+	</data>
+</openerp>
