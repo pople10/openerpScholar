@@ -32,8 +32,8 @@ class scholar_exam(osv.osv):
         return super(scholar_exam, self).create(cr, uid, vals, context=context)
     def onchange_dates(self, cr, uid, ids,fromDate,toDate, context=None):
         if fromDate and toDate:
-            d_date = datetime.strptime(toDate.split(" ")[0],"%Y-%m-%d %H:%M:%S")
-            c_date = datetime.strptime(fromDate.split(" ")[0],"%Y-%m-%d %H:%M:%S")
+            d_date = datetime.strptime(toDate,"%Y-%m-%d %H:%M:%S")
+            c_date = datetime.strptime(fromDate,"%Y-%m-%d %H:%M:%S")
             if c_date > d_date:
                 return {
                     'warningSwal': {
@@ -42,5 +42,13 @@ class scholar_exam(osv.osv):
                     }
                     ,'value': {'to' : str(c_date+timedelta(hours=2))}
                 }
+            if(d_date.date()!=c_date.date()):
+                return {
+                    'warningSwal': {
+                            'title':'Invalid dates',
+                            'message':'Dates should be in same day!'
+                        }
+                        ,'value': {'to' : str(c_date+timedelta(hours=2))}
+                    }
         return {}
 scholar_exam()

@@ -8,7 +8,7 @@ class scholar_exam_result(osv.osv):
     _columns={
         "idExam":fields.many2one('scholar.exam','Exam',ondelete='cascade', required=True),
         "idInscription":fields.many2one('scholar.inscription','Inscription',ondelete='cascade',required=True),
-        "note":fields.char("Note",size=255,required=True),
+        "note":fields.char("Note",size=255),
         "report":fields.text("Report"),
         "mark":fields.float('Mark'),
         "originalMark":fields.float('Original Mark',required=True)

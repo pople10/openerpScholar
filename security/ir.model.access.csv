@@ -5,7 +5,7 @@
 "access_student_model_scholar_professor","scholar.professor group_scholar_student","model_scholar_professor","group_scholar_student",1,0,0,0
 "access_student_model_scholar_parent","scholar.parent group_scholar_student","model_scholar_parent","group_scholar_student",0,0,0,0
 "access_student_model_scholar_person","scholar.person group_scholar_student","model_scholar_person","group_scholar_student",0,0,0,0
-"access_student_model_scholar_course","scholar.course group_scholar_student","model_scholar_course","group_scholar_student",0,0,0,0
+"access_student_model_scholar_course","scholar.course group_scholar_student","model_scholar_course","group_scholar_student",1,0,0,0
 "access_student_model_scholar_timetable","scholar.timetable group_scholar_student","model_scholar_timetable","group_scholar_student",1,0,0,0
 "access_student_model_scholar_inscription","scholar.inscription group_scholar_student","model_scholar_inscription","group_scholar_student",0,0,0,0
 "access_student_model_scholar_etablishement","scholar.etablishement group_scholar_student","model_scholar_etablishement","group_scholar_student",0,0,0,0
