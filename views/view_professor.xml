@@ -20,7 +20,8 @@
                             </h1>
                         </div>
                         <div class="oe_right oe_button_box" name="button_box">
-                            
+                            <button string="Serve" name="serve" type="object" class="oe_highlight" attrs="{'invisible':[('inService','=',True)]}"/>
+                            <button string="Unserve" name="unserve" type="object" class="oe_highlight" attrs="{'invisible':[('inService','=',False)]}"/>
                         </div>
                         <notebook>
                             <page string="Details">
